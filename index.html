@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Epic Entertainment</title>
+  <meta name="description" content="Play browser games from Epic Entertainment LLC." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎩</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#/games" aria-label="Epic Entertainment home">
+      <span class="brand-hat" aria-hidden="true">🎩</span>
+      <span class="brand-text">EPIC<span>ENTERTAINMENT</span></span>
+    </a>
+    <nav class="tabs" id="tabs" hidden>
+      <a href="#/games" data-tab="games">Games</a>
+      <a href="#/favorites" data-tab="favorites">Favorites</a>
+      <a href="#/leaderboard" data-tab="leaderboard">Leaderboard</a>
+    </nav>
+    <div class="user" id="userArea"></div>
+  </header>
+
+  <main id="view" class="view"></main>
+
+  <!-- Game player -->
+  <div class="player" id="player" hidden>
+    <div class="player-bar">
+      <button class="icon-btn" id="playerClose" aria-label="Close game">✕</button>
+      <h2 id="playerTitle"></h2>
+      <span class="player-status" id="playerStatus"></span>
+      <button class="btn ghost small" id="playerFull">⛶ Fullscreen</button>
+    </div>
+    <div class="player-frame" id="playerFrameWrap"></div>
+  </div>
+
+  <!-- Admin game editor -->
+  <dialog class="modal" id="editor">
+    <form id="editorForm" method="dialog">
+      <header class="modal-head">
+        <h2 id="editorTitle">Add game</h2>
+        <button type="button" class="icon-btn" id="editorClose" aria-label="Close">✕</button>
+      </header>
+      <div class="modal-body">
+        <label class="field">Title
+          <input name="title" required maxlength="80" placeholder="e.g. Tacocraft" />
+        </label>
+        <label class="field">Short description
+          <textarea name="description" rows="2" maxlength="300" placeholder="What's the game about?"></textarea>
+        </label>
+        <div class="row">
+          <label class="field">Category
+            <select name="category">
+              <option value="action">Action</option>
+              <option value="arcade">Arcade</option>
+              <option value="puzzle">Puzzle</option>
+              <option value="strategy">Strategy</option>
+              <option value="casual">Casual</option>
+              <option value="other" selected>Other</option>
+            </select>
+          </label>
+          <label class="field">Thumbnail (optional)
+            <input type="file" name="thumbFile" accept="image/*" />
+          </label>
+        </div>
+        <div class="thumb-preview" id="thumbPreview" hidden></div>
+
+        <fieldset class="seg" id="sourceSeg">
+          <legend>Game source</legend>
+          <label><input type="radio" name="source" value="file" checked /> Upload .html file</label>
+          <label><input type="radio" name="source" value="paste" /> Paste HTML</label>
+          <label><input type="radio" name="source" value="url" /> Link (URL)</label>
+        </fieldset>
+        <div data-source="file" class="source-pane">
+          <input type="file" name="htmlFile" accept=".html,.htm,text/html" />
+          <p class="hint" id="fileHint">Single-file HTML games work best (scripts and styles inside the file).</p>
+        </div>
+        <div data-source="paste" class="source-pane" hidden>
+          <textarea name="htmlCode" rows="8" class="mono" placeholder="<!doctype html> ..."></textarea>
+        </div>
+        <div data-source="url" class="source-pane" hidden>
+          <input name="url" type="url" placeholder="https://sefrenethofficial.github.io/Tacocraft/" />
+          <p class="hint">For games already hosted somewhere, e.g. your other GitHub Pages games.</p>
+        </div>
+        <p class="form-error" id="editorError" hidden></p>
+      </div>
+      <footer class="modal-foot">
+        <button type="button" class="btn ghost" id="editorCancel">Cancel</button>
+        <button type="submit" class="btn primary" id="editorSave">Save game</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <!-- Confirm delete -->
+  <dialog class="modal small" id="confirm">
+    <form method="dialog">
+      <div class="modal-body"><p id="confirmText"></p></div>
+      <footer class="modal-foot">
+        <button value="no" class="btn ghost">Cancel</button>
+        <button value="yes" class="btn danger">Delete</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
