@@ -1,0 +1,60 @@
+{
+  "name": "Game",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Name of the game"
+    },
+    "description": {
+      "type": "string",
+      "description": "Short description of the game"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "html",
+        "embed"
+      ],
+      "description": "Whether this is raw HTML code or an embed URL"
+    },
+    "html_code": {
+      "type": "string",
+      "description": "Raw HTML game code (for type=html)"
+    },
+    "embed_url": {
+      "type": "string",
+      "description": "Embed URL for iframe (for type=embed)"
+    },
+    "thumbnail_url": {
+      "type": "string",
+      "description": "Optional thumbnail image URL"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "action",
+        "puzzle",
+        "arcade",
+        "strategy",
+        "casual",
+        "other"
+      ],
+      "default": "other"
+    },
+    "play_count": {
+      "type": "number",
+      "default": 0,
+      "description": "Total number of times played by all users"
+    },
+    "is_app": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this entry is an App (not a game)"
+    }
+  },
+  "required": [
+    "title",
+    "type"
+  ]
+}

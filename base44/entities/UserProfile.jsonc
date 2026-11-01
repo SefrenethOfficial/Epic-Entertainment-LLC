@@ -1,0 +1,159 @@
+{
+  "name": "UserProfile",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "The user's ID"
+    },
+    "user_email": {
+      "type": "string",
+      "description": "The user's email"
+    },
+    "display_name": {
+      "type": "string",
+      "description": "User's chosen display name"
+    },
+    "bio": {
+      "type": "string",
+      "description": "User's personal profile description"
+    },
+    "avatar": {
+      "type": "string",
+      "enum": [
+        "logo",
+        "smiley1",
+        "smiley2",
+        "custom"
+      ],
+      "default": "logo"
+    },
+    "avatar_url": {
+      "type": "string",
+      "description": "Custom uploaded avatar image URL"
+    },
+    "points": {
+      "type": "number",
+      "default": 0,
+      "description": "Total points earned"
+    },
+    "diamonds": {
+      "type": "number",
+      "default": 0,
+      "description": "Total diamonds earned from playtime milestones"
+    },
+    "epicbucks": {
+      "type": "number",
+      "default": 0,
+      "description": "EpicBucks printed at the Layer"
+    },
+    "bread_points": {
+      "type": "number",
+      "default": 0,
+      "description": "Bread Points earned from the Bread Clicker in the Realm of Bread"
+    },
+    "last_print_time": {
+      "type": "string",
+      "description": "ISO datetime of last EpicBucks print"
+    },
+    "layer_banned_until": {
+      "type": "string",
+      "description": "ISO datetime \u2014 banned from Layer until this time"
+    },
+    "last_suspect_time": {
+      "type": "string",
+      "description": "ISO datetime of last detective suspect attempt"
+    },
+    "streak_days": {
+      "type": "number",
+      "default": 0,
+      "description": "Current consecutive daily login streak"
+    },
+    "last_login_date": {
+      "type": "string",
+      "description": "ISO date string of last login (YYYY-MM-DD)"
+    },
+    "playtime_minutes": {
+      "type": "number",
+      "default": 0,
+      "description": "Total minutes played"
+    },
+    "game_play_counts": {
+      "type": "object",
+      "description": "Map of game_id to number of times played"
+    },
+    "favorite_game_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of favorited game IDs"
+    },
+    "owned_avatar_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of purchased CustomAvatar IDs from the shop"
+    },
+    "background_type": {
+      "type": "string",
+      "enum": [
+        "none",
+        "preset",
+        "gradient",
+        "image",
+        "color"
+      ],
+      "default": "none"
+    },
+    "background_value": {
+      "type": "string",
+      "description": "CSS value for background (gradient, color, or image URL)"
+    },
+    "banned": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this user is banned from the app"
+    },
+    "badge": {
+      "type": "string",
+      "enum": [
+        "owner",
+        "admin",
+        "moderator",
+        "editor",
+        "vip",
+        "member"
+      ],
+      "default": "member",
+      "description": "User's role badge displayed next to their name"
+    },
+    "fish_count": {
+      "type": "number",
+      "default": 0,
+      "description": "Total fish caught in the fishing mini-game"
+    },
+    "fish_points": {
+      "type": "number",
+      "default": 0,
+      "description": "Fish points earned from catching fish"
+    },
+    "fishing_rod": {
+      "type": "string",
+      "default": "basic",
+      "description": "Currently equipped fishing rod ID"
+    },
+    "owned_fishing_rods": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [
+        "basic"
+      ],
+      "description": "List of owned fishing rod IDs"
+    }
+  },
+  "required": []
+}

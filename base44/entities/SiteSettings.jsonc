@@ -1,0 +1,33 @@
+{
+  "name": "SiteSettings",
+  "type": "object",
+  "properties": {
+    "messages": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of rotating messages shown on the home screen"
+    },
+    "poster_html": {
+      "type": "string",
+      "description": "HTML content shown on the poster page"
+    },
+    "info_box": {
+      "type": "string",
+      "description": "Editable info box content shown on the splash screen near the bottom"
+    },
+    "breaking_news": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of breaking news items that scroll across the top bar"
+    },
+    "emporium_info": {
+      "type": "string",
+      "description": "Editable info text shown on the Sefreneths Emporium page"
+    }
+  },
+  "required": []
+}

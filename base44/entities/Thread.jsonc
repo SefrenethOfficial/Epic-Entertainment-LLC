@@ -1,0 +1,40 @@
+{
+  "name": "Thread",
+  "type": "object",
+  "properties": {
+    "author_id": {
+      "type": "string",
+      "description": "User ID of the author"
+    },
+    "author_name": {
+      "type": "string",
+      "description": "Display name of the author"
+    },
+    "author_avatar": {
+      "type": "string",
+      "description": "Avatar type"
+    },
+    "author_avatar_url": {
+      "type": "string",
+      "description": "Avatar URL if custom"
+    },
+    "title": {
+      "type": "string",
+      "description": "Thread title/headline"
+    },
+    "content": {
+      "type": "string",
+      "description": "Thread body content"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "Optional image URL"
+    }
+  },
+  "required": [
+    "author_id",
+    "author_name",
+    "title",
+    "content"
+  ]
+}

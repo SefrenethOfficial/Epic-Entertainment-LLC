@@ -1,0 +1,46 @@
+{
+  "name": "Comment",
+  "type": "object",
+  "properties": {
+    "target_type": {
+      "type": "string",
+      "enum": [
+        "news",
+        "game",
+        "profile"
+      ],
+      "description": "What kind of thing this comment is on"
+    },
+    "target_id": {
+      "type": "string",
+      "description": "ID of the news post, game, or user profile being commented on"
+    },
+    "author_id": {
+      "type": "string",
+      "description": "User ID of the commenter"
+    },
+    "author_name": {
+      "type": "string",
+      "description": "Display name of the commenter at time of posting"
+    },
+    "author_avatar": {
+      "type": "string",
+      "description": "Avatar type of the commenter at time of posting"
+    },
+    "author_avatar_url": {
+      "type": "string",
+      "description": "Avatar URL of the commenter (if custom)"
+    },
+    "content": {
+      "type": "string",
+      "description": "The comment text"
+    }
+  },
+  "required": [
+    "target_type",
+    "target_id",
+    "author_id",
+    "author_name",
+    "content"
+  ]
+}

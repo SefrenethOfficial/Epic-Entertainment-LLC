@@ -1,0 +1,37 @@
+{
+  "name": "NewsPost",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Headline of the news post"
+    },
+    "content": {
+      "type": "string",
+      "description": "Full content / body of the post"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "Optional header image URL"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "announcement",
+        "update",
+        "event",
+        "other"
+      ],
+      "default": "announcement"
+    },
+    "pinned": {
+      "type": "boolean",
+      "default": false,
+      "description": "Pin this post to the top"
+    }
+  },
+  "required": [
+    "title",
+    "content"
+  ]
+}

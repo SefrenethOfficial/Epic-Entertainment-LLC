@@ -1,0 +1,72 @@
+{
+  "name": "Trade",
+  "type": "object",
+  "properties": {
+    "offering_user_id": {
+      "type": "string",
+      "description": "User ID of the player offering the item"
+    },
+    "offering_user_name": {
+      "type": "string",
+      "description": "Display name of the offering player"
+    },
+    "offering_user_avatar": {
+      "type": "string",
+      "description": "Avatar type of the offering player"
+    },
+    "offering_user_avatar_url": {
+      "type": "string",
+      "description": "Avatar URL of the offering player"
+    },
+    "inventory_item_id": {
+      "type": "string",
+      "description": "ID of the InventoryItem being offered"
+    },
+    "item_name": {
+      "type": "string",
+      "description": "Name of the offered item"
+    },
+    "item_icon_url": {
+      "type": "string",
+      "description": "Icon URL of the offered item"
+    },
+    "item_rarity": {
+      "type": "string",
+      "description": "Rarity of the offered item"
+    },
+    "item_worth": {
+      "type": "number",
+      "default": 0,
+      "description": "Worth of the offered item"
+    },
+    "asking_price": {
+      "type": "number",
+      "default": 0,
+      "description": "Asking price in points"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "open",
+        "completed",
+        "cancelled"
+      ],
+      "default": "open",
+      "description": "Trade status"
+    },
+    "buyer_user_id": {
+      "type": "string",
+      "description": "User ID of the buyer who completed the trade"
+    },
+    "buyer_user_name": {
+      "type": "string",
+      "description": "Display name of the buyer"
+    }
+  },
+  "required": [
+    "offering_user_id",
+    "offering_user_name",
+    "inventory_item_id",
+    "item_name"
+  ]
+}

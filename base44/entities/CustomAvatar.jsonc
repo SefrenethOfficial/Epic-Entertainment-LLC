@@ -1,0 +1,38 @@
+{
+  "name": "CustomAvatar",
+  "type": "object",
+  "properties": {
+    "label": {
+      "type": "string",
+      "description": "Display label for this avatar"
+    },
+    "url": {
+      "type": "string",
+      "description": "Image URL of the avatar"
+    },
+    "price": {
+      "type": "number",
+      "default": 0,
+      "description": "Cost in points to purchase this avatar (for points shop)"
+    },
+    "diamond_price": {
+      "type": "number",
+      "default": 0,
+      "description": "Cost in diamonds to purchase this avatar (for diamond shop)"
+    },
+    "in_shop": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this avatar is available in the points shop"
+    },
+    "in_diamond_shop": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this avatar is available in the diamond shop"
+    }
+  },
+  "required": [
+    "label",
+    "url"
+  ]
+}
