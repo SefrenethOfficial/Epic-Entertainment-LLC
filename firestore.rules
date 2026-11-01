@@ -1,0 +1,64 @@
+rules_version = '2';
+// Paste this into Firebase console → Firestore Database → Rules → Publish.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() { return request.auth != null; }
+
+    // Only this Google account can add, edit or delete games.
+    function isAdmin() {
+      return signedIn()
+        && request.auth.token.email == 'epocendie@gmail.com'
+        && request.auth.token.email_verified == true;
+    }
+
+    function onlyChanged(fields) {
+      return request.resource.data.diff(resource.data).affectedKeys().hasOnly(fields);
+    }
+
+    match /games/{gameId} {
+      allow read: if signedIn();
+      allow create, delete: if isAdmin();
+      // Players may only bump the play counter by exactly one.
+      allow update: if isAdmin()
+        || (signedIn()
+            && onlyChanged(['playCount'])
+            && request.resource.data.playCount == resource.data.get('playCount', 0) + 1);
+
+      match /chunks/{chunkId} {
+        allow read: if signedIn();
+        allow write: if isAdmin();
+      }
+    }
+
+    match /users/{uid} {
+      allow read: if signedIn();
+
+      allow create: if signedIn() && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['displayName', 'photoURL', 'points', 'favorites', 'lastPlayAt', 'createdAt'])
+        && request.resource.data.points == 0
+        && request.resource.data.favorites == []
+        && request.resource.data.displayName is string
+        && request.resource.data.displayName.size() <= 60
+        && request.resource.data.lastPlayAt <= request.time;
+
+      allow update: if signedIn() && request.auth.uid == uid && (
+        // favourites list
+        (onlyChanged(['favorites'])
+          && request.resource.data.favorites is list
+          && request.resource.data.favorites.size() <= 500)
+        // +10 points per play, at most once a minute
+        || (onlyChanged(['points', 'lastPlayAt'])
+          && request.resource.data.points == resource.data.points + 10
+          && request.resource.data.lastPlayAt == request.time
+          && request.time > resource.data.lastPlayAt + duration.value(60, 's'))
+        // name / picture synced from Google
+        || (onlyChanged(['displayName', 'photoURL'])
+          && request.resource.data.displayName is string
+          && request.resource.data.displayName.size() <= 60
+          && request.resource.data.photoURL is string
+          && request.resource.data.photoURL.size() <= 500)
+      );
+    }
+  }
+}
